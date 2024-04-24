@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/yojablao/Desktop/fract",
-      "program": "/Users/yojablao/Desktop/fract/build/Debug/outDebug"
+      "cwd": "/Users/yojablao/Desktop/my_fractol",
+      "program": "/Users/yojablao/Desktop/my_fractol/build/Debug/outDebug"
     }
   ]
 }
