@@ -38,7 +38,17 @@ void mandelbrot(var_t *fractol);
 // }
 
 
-
+void    close_handler(var_t *fractol)
+{
+    mlx_clear_window(fractol->mlx,fractol->win);
+    perror("0");
+    mlx_destroy_image (fractol->mlx,fractol->img.img);
+    perror("1");
+    mlx_destroy_window(fractol->mlx,fractol->win);
+    perror("2");
+    free(fractol->mlx);
+    exit(0);
+}
 int	key_hook(int keysym, void *param)
 {
     var_t   *fractol;
@@ -49,6 +59,61 @@ int	key_hook(int keysym, void *param)
         mandelbrot(fractol);
 
     }
+    printf("key = %d\n",keysym);
+    if(keysym == 34)
+    {
+        fractol->MAX_iter+= 10;
+        mandelbrot(fractol);
+    }
+    if(keysym == 35)
+    {
+        fractol->MAX_iter-= 10;
+        mandelbrot(fractol);
+    }
+    if(keysym == 69)
+    {
+        fractol->cor.scaling *= 1.5;
+        mandelbrot(fractol);
+    }
+    if(keysym == 78)
+    {
+        fractol->cor.scaling /= 1.5;
+        mandelbrot(fractol);
+    }
+    if(keysym == 124)
+    {
+        if(fractol->cor.scaling > 10)
+            fractol->cor.sheftx += 0.009;
+        else
+            fractol->cor.sheftx += 0.009;
+        mandelbrot(fractol);
+    }
+    if(keysym == 123)
+    {
+        if(fractol->cor.scaling > 10.5)
+            fractol->cor.sheftx -= 0.009;
+        else
+            fractol->cor.sheftx -= 0.009;
+        mandelbrot(fractol);
+    }
+    if(keysym == 126)
+    {
+        if(fractol->cor.scaling > 10)
+            fractol->cor.shefty += 0.009;
+        else
+            fractol->cor.shefty += 0.009;
+        mandelbrot(fractol);
+    }
+    if(keysym == 125)
+    {
+        if(fractol->cor.scaling > 10)
+            fractol->cor.shefty -= 0.009;
+        else
+            fractol->cor.shefty -= 0.009;
+        mandelbrot(fractol);
+    }
+    if(keysym == 53)
+        close_handler(fractol);
 	return 0;
 
 }
@@ -68,7 +133,7 @@ double map(double unscaled_num,double min,double max ,double olmin,double oldmax
 {
 	return((max - min) * (unscaled_num - olmin) / (oldmax - olmin) + min);
 }
-int equations(double real,double imag)
+int equations(double real,double imag,int MAX_iter)
 {
 	double Zr;
 	double Zi;
@@ -88,10 +153,9 @@ int equations(double real,double imag)
 		i++;
 	}
 
-	return (i);
+	return (i == MAX_iter ? COLOR_GRAY/25 : i);
 }
       
-
 
 void mandelbrot(var_t *fractol) {
     int x;
@@ -104,12 +168,22 @@ void mandelbrot(var_t *fractol) {
     while (y < Y) {
         x = 0;
         while (x < X) {
-            real = map(x, -2, 2, 0, X);
-            imag = map(y, +2, -2, 0, Y);
-            // printf("real = %f, imag = %f\n", real, imag);
-            color = equations(real, imag);
-            color = color * fractol->color / 4;
-            my_mlx_pixel_put(fractol->img, x, y, color ) ;
+            real = map(x, -2 *fractol->cor.scaling, 2 *fractol->cor.scaling, 0, X)+ fractol->cor.sheftx;
+            imag = map(y, +2 *fractol->cor.scaling, -2 *fractol->cor.scaling, 0, Y) + fractol->cor.shefty;
+            color = equations(real, imag,fractol->MAX_iter);
+            color = color * fractol->color / 8;
+             // You can adjust the division to control the lightness
+            // Extract RGB components
+            int r = (color >> 16) & 0xFF;
+            int g = (color >> 8) & 0xFF;
+            // int b = color & 0xFF;
+            // Decrease intensity by scaling down the RGB components
+            r = r * 1.5; // Adjust the multiplier to control the lightness
+            g = g * 1.5;
+            // b = b * 1.5;
+            // Recombine RGB components
+            color = (r << 16) + (g << 8)  ;
+            my_mlx_pixel_put(fractol->img, x, y, color );
             x++;
         }
         y++;
@@ -126,7 +200,7 @@ void fractol_conection(var_t *fractol)
     {
         ft_putstr_fd("rtfm",2);
         free(fractol->mlx);
-        exit(1);
+        exit(1); 
     }
     fractol->img.img = mlx_new_image(fractol->mlx,X,Y);
     if(!fractol->img.img)
@@ -140,9 +214,13 @@ void fractol_conection(var_t *fractol)
                                                 &fractol->img.bits_per_pixel,
                                                 &fractol->img.line_length,
                                                 &fractol->img.endian);
-    fractol->color = 4110;
-    mandelbrot(fractol)  ;                                              
-    evant_init(fractol);
+    fractol->color = 4112;
+    fractol->MAX_iter = 42;
+    fractol->cor.scaling = 1;
+    fractol->cor.sheftx =0;
+    fractol->cor.shefty = 0;
+    mandelbrot(&*fractol)  ;                                              
+    evant_init(&*fractol);
     mlx_loop(fractol->mlx);
 }
     

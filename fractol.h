@@ -6,7 +6,7 @@
 /*   By: yojablao <yojablao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 23:19:27 by yojablao          #+#    #+#             */
-/*   Updated: 2024/04/24 22:13:08 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/04/25 02:22:03 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 #define NEW_MAX_Y 2
 #define NEW_MIN_Y -2
 #define NEW_MIN_X -2
-# define MAX_iter 500
 #define COLOR_BLACK 0x000000
 #define COLOR_WHITE 0xFFFFFF
 #define COLOR_BLUE  0x0000FF
@@ -55,6 +54,14 @@ typedef struct	s_data {
 	int		line_length;
 	int		endian;
 }				t_imag;
+typedef struct hook_s
+{
+		float 	scaling;
+		float	sheftx;
+		float	shefty;
+		
+}hook_t;
+
 
 typedef struct variables
 {
@@ -63,7 +70,8 @@ typedef struct variables
 	void	*win;
 	t_imag	img;
 	int		color;
-	char **colors[8];
+	int		MAX_iter;
+	hook_t	cor;
 }	var_t ;
 
 void fractol_conection(var_t *fractol);
