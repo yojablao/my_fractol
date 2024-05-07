@@ -6,7 +6,7 @@
 /*   By: yojablao <yojablao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 23:19:27 by yojablao          #+#    #+#             */
-/*   Updated: 2024/04/25 02:22:03 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/05/04 20:58:46 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,8 @@
 # include <math.h>
 # include "src/libft.h"
 
-#define X 1080
-#define Y 1350
-#define NEW_MAX_X 2
-#define NEW_MAX_Y 2
-#define NEW_MIN_Y -2
-#define NEW_MIN_X -2
+#define X 1000
+#define Y 1000
 #define COLOR_BLACK 0x000000
 #define COLOR_WHITE 0xFFFFFF
 #define COLOR_BLUE  0x0000FF
@@ -39,6 +35,9 @@
 #define COLOR_ELECTRIC_BLUE 0x7DF9FF
 #define COLOR_LIME_GREEN 0x32CD32
 #define COLOR_GOLD 0xFFD700
+
+
+
 #define COLOR_HOT_PINK 0xFF69B4
 #define COLOR_INDIGO 0x4B0082
 #define COLOR_JADE 0x00A86B
@@ -56,9 +55,9 @@ typedef struct	s_data {
 }				t_imag;
 typedef struct hook_s
 {
-		float 	scaling;
-		float	sheftx;
-		float	shefty;
+		double 	scaling;
+		double	sheftx;
+		double	shefty;
 		
 }hook_t;
 
@@ -73,8 +72,19 @@ typedef struct variables
 	int		MAX_iter;
 	hook_t	cor;
 }	var_t ;
+// typedef	struct map
+// {
+// 	double 
+// }
 
 void fractol_conection(var_t *fractol);
+void    evant_init(var_t    *fractol);
+int	key_hook(int keysym, void *param);
+void mandelbrot(var_t *fractol);
+double map(double unscaled_num,double min,double max ,double olmin,double oldmax);
+void    reset(var_t *fractol);
+void    evant_init(var_t    *fractol);
+
 
 
 

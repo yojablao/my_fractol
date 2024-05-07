@@ -16,4 +16,5 @@ int main(int c ,char **v)
 		ft_putstr_fd("fail",2);
 		exit(1);
 	}
+
 }
