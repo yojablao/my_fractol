@@ -6,7 +6,7 @@
 /*   By: yojablao <yojablao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 23:19:27 by yojablao          #+#    #+#             */
-/*   Updated: 2024/05/04 20:58:46 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:31:01 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,15 @@ typedef struct hook_s
 		double	shefty;
 		
 }hook_t;
+typedef struct color_s
+{
+		int	color;
+		int red;
+		int green;
+		int blue;
+		int color_shift;
+		
+}t_color;
 
 
 typedef struct variables
@@ -81,7 +90,7 @@ void fractol_conection(var_t *fractol);
 void    evant_init(var_t    *fractol);
 int	key_hook(int keysym, void *param);
 void mandelbrot(var_t *fractol);
-double map(double unscaled_num,double min,double max ,double olmin,double oldmax);
+double map(double unscaled_num,double min,double max ,double oldmax);
 void    reset(var_t *fractol);
 void    evant_init(var_t    *fractol);
 

@@ -3,15 +3,16 @@
 void    reset(var_t *fractol)
 {
     fractol->color = 1;
-    fractol->MAX_iter = 40;
+    fractol->MAX_iter = 50;
     fractol->cor.scaling = 1;
     fractol->cor.sheftx = 0;
     fractol->cor.shefty = 0;
 }
-
-
-
-
+void ft_color(int iteration, int *red, int *green, int *blue) {
+    *red = (iteration * 10) % 250;
+    *green = (iteration * 10) % 250;
+    *blue = (iteration * 2) % 250;
+}
 
 void	my_mlx_pixel_put( t_imag img,int x, int y, int color)
 {
@@ -20,118 +21,73 @@ void	my_mlx_pixel_put( t_imag img,int x, int y, int color)
 	offset = (y * img.line_length) + (x * (img.bits_per_pixel / 8));
 	*(int *)(img.addr + offset) = color;
 }
-double map(double unscaled_num,double min,double max ,double olmin,double oldmax)
+
+double map(double unscaled_num,double min,double max ,double oldmax)
 {
-	return((max - min) * (unscaled_num - olmin) / (oldmax - olmin) + min);
+	return((max - min) * (unscaled_num - 0) / (oldmax - 0) + min);
 }
-// int equations(double real,double imag,int MAX_iter)
-// {
-// 	double Zr;
-// 	double Zi;
-// 	double  tmp;
-// 	int i;
-// 	int color;
 
-// 	Zi = real;
-// 	Zr = imag;
-// 	i = 0;
-//     double juliarl = 0.285, juliaim = 0.01;
-// 	while(Zi*Zi + Zr*Zr <= 4 && i < MAX_iter )
-// 	{
-// 		tmp = Zr * Zr - Zi * Zi + real;
-// 		Zi  = 2 * Zi * Zr + imag;
-// 		Zr = tmp;
-// 		i++;
-// 	}
-
-// 	return (i == MAX_iter ? COLOR_KHAKI/25 : i);
-// }
-int equations(double real,double imag,int MAX_iter)
+int equations(double real, double imag, int MAX_iter, int color_shift)
 {
-	double Zr;
-	double Zi;
-	double  tmp;
-	int i;
-	int color;
+    double Zr;
+    double Zi;
+    double tmp;
+    int i;
+    double t;
+    int time_shift;
 
-	Zi = 0.0;
-	Zr = 0.0;
-	i = 0;
-
-	while(Zi*Zi + Zr*Zr <= 4 && i < MAX_iter )
-	{
-		tmp = Zr * Zr - Zi * Zi + real;
-		Zi  = 2 * Zi * Zr + imag;
-		Zr = tmp;
-		i++;
-	}
-    double smooth_value = i + 1 - log(log(sqrt(Zr * Zr + Zi * Zi))) / log(2);
-	return (smooth_value );
+    Zi = 0.0;
+    Zr = 0.0;
+    i = 0;
+    while (Zi * Zi + Zr * Zr <= 4 && i < MAX_iter)
+    {
+        tmp = Zr * Zr - Zi * Zi + real;
+        Zi = 2 * Zi * Zr + imag;
+        Zr = tmp;
+        i++;
+    }
+    if (i == MAX_iter)
+        return COLOR_HOT_PINK - (int)real;
+    time_shift = color_shift + i;
+    
+    // Interpolate between different neon colors based on the number of iterations and time shift
+    t = (double)time_shift / (double)MAX_iter; // Calculate interpolation factor
+    int red = (int)(9 * (1 - t) * t * t * t * 255); // Neon pink
+    int green = (int)(15 * (1 - t) * (1 - t) * t * t * 255); // Neon blue-green
+    int blue = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255); // Neon purple
+     return (red << 16) | (green << 8) |  blue;
 }
-     void mandelbrot(var_t *fractol) {
+
+void mandelbrot(var_t *fractol)
+{
     int x;
     int y;
     double real;
     double imag;
+    int  color_shift =0 ;
     int color;
 
+    mlx_clear_window(fractol->mlx,fractol->win);
     y = 0;
-    while (y < Y) {
+    while (y < Y)
+    {
         x = 0;
-        while (x < X) {
-            real = map(x, -2 * fractol->cor.scaling + fractol->cor.sheftx, 2 * fractol->cor.scaling + fractol->cor.sheftx, 0, X);
-            imag = map(y, 2 * fractol->cor.scaling + fractol->cor.shefty, -2 * fractol->cor.scaling + fractol->cor.shefty, 0, Y);
-            color = equations(real, imag, fractol->MAX_iter) ;
-            if(color > fractol->MAX_iter * 0.90)
-                my_mlx_pixel_put(fractol->img, x, y, COLOR_LAVENDER/20);
-            else
-            {
-
-                int r = (color * 7) % 25; // Vary the red component
-                int g = (color * 13) % 25; // Vary the green component
-                int b = (color * 19) % 25; // Vary the blue component
-
-                color = (r << 16) + (g << 8) + b;
-                my_mlx_pixel_put(fractol->img, x, y, color * fractol->color);
-
-                }
+        while (x < X)
+        {
+            real = map(x, -2 * fractol->cor.scaling + fractol->cor.sheftx, 2 * fractol->cor.scaling + fractol->cor.sheftx, X);
+            imag = map(y, 2 * fractol->cor.scaling + fractol->cor.shefty, -2 * fractol->cor.scaling + fractol->cor.shefty, Y);
+            color = equations(real, imag, fractol->MAX_iter,color_shift);
+            my_mlx_pixel_put(fractol->img, x, y, color + fractol->color);
             x++;
         }
         y++;
     }
 
     mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->img.img, 0, 0);
-} 
-// void mandelbrot(var_t *fractol) {
-//     int x;
-//     int y;
-//     double real;
-//     double imag;
-//     int color    ;
-//     y = 0;
-//     while (y < Y) {
-//         x = 0;
-//         while (x < X) {
-//             real = map(x, -2 * fractol->cor.scaling + fractol->cor.sheftx, 2 * fractol->cor.scaling +fractol->cor.sheftx ,0, X)  ;
-//             imag = map(y, 2 * fractol->cor.scaling + fractol->cor.shefty, -2 * fractol->cor.scaling +fractol->cor.shefty ,0, Y) ;
-//             color = equations(real, imag, fractol->MAX_iter);
-//             color = color * fractol->color / 5;
-//             int r = (color >> 16) & 0xFF;
-//             int g = (color >> 8) & 0xFF;
-//             r = r * 2; 
-//             g = g * 2;
-//             color = (r << 16) + (g << 8)  ;
-//             my_mlx_pixel_put(fractol->img, x, y, color );
+}
 
-//             x++;
-//             }
-            
-//                     y++;
 
-//     }
-    
-//     mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->img.img, 0, 0);
-// }
+
 void fractol_conection(var_t *fractol)
 {
     fractol->mlx = mlx_init();
