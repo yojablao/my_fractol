@@ -16,7 +16,7 @@ int burning_ship(double real, double imag, int MAX_iter)
         i++;
     }
     if (i == MAX_iter)
-        return COLOR_LAVENDER / log(2);
+        return COLOR_GOLD ;
     t = (double)i / (double)MAX_iter;
     int red = (int)(9 * (1 - t) * t * t * t * 255);
     int green = (int)(15 * (1 - t) * (1 - t) * t * t * 255);

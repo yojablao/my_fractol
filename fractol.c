@@ -6,7 +6,7 @@
 /*   By: yojablao <yojablao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:07:50 by yojablao          #+#    #+#             */
-/*   Updated: 2024/05/18 16:42:38 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/05/18 21:05:43 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ int main(int c ,char **v)
 	var_t	fractol;
 	if(c == 2)
 	{
+		fractol.names = v[1];
 		fractol.fractal_type = 0;
 		fractol_conection(&fractol);
 	}
 	else if(c == 4 && ft_strncmp(v[1],"Julia",5) == 0)
 	{
+		fractol.names = v[1];
 		fractol.fractal_type = 1;
 		fractol.r = v[2];
 		fractol.i = v[3];

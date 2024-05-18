@@ -6,7 +6,7 @@
 /*   By: yojablao <yojablao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 23:19:27 by yojablao          #+#    #+#             */
-/*   Updated: 2024/05/18 16:26:25 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/05/18 21:35:13 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "mlx.h"
 # include <math.h>
 # include "src/libft.h"
+#include <fcntl.h>
+
 
 #define X 1000
 #define Y 1000
@@ -34,7 +36,7 @@
 #define COLOR_FIERY_ORANGE 0xFF4500
 #define COLOR_ELECTRIC_BLUE 0x7DF9FF
 #define COLOR_LIME_GREEN 0x32CD32
-#define COLOR_GOLD 0xFFD700
+#define COLOR_GOLD 0x865643
 
 
 
@@ -73,7 +75,7 @@ typedef struct color_s
 
 typedef struct variables
 {
-	char	**names;
+	char	*names;
 	void	*mlx;
 	void	*win;
 	t_imag	img;
@@ -86,6 +88,7 @@ typedef struct variables
 	char	*r;
 	char	*i;
 	int 	sin;
+	
 }	var_t ;
 void julia(var_t *fractol, double Cr, double Ci);
 double ft_atoi_double(const char *str);
@@ -98,7 +101,7 @@ void    reset(var_t *fractol);
 void    evant_init(var_t    *fractol);
 void	my_mlx_pixel_put( t_imag img,int x, int y, int color);
 void draw_burning_ship(var_t *fractol);
-
+void handle_save_bmp(var_t *fractol) ;
 
 
 #endif

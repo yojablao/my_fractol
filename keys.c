@@ -6,7 +6,7 @@
 /*   By: yojablao <yojablao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:07:55 by yojablao          #+#    #+#             */
-/*   Updated: 2024/05/18 18:37:40 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/05/18 21:19:28 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ int	key_hook(int keysym, void *param)
     fractol =  (var_t *)param;
     if (keysym == 8)
         fractol->color += 60;
+    else if (keysym == 1) // 's' key for saving the image
+        handle_save_bmp(fractol);
+
     else if(keysym == 34)
         fractol->MAX_iter+= 10;
     else if(keysym == 35)
