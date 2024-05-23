@@ -77,14 +77,15 @@ Example:
 ![fractal_output (5)](https://github.com/yojablao/my_fractol/assets/111790283/08bdf245-fb38-41cf-bb30-b9740271b801)
 
 - `burning_ship`
-![fractal_output (10)](https://github.com/yojablao/my_fractol/assets/111790283/621bc8e0-f312-4f32-a133-629a0209fcc0)
-![fractal_output (11)](https://github.com/yojablao/my_fractol/assets/111790283/988a83b0-a0d2-4b3c-86da-d7e16baf02c9)
-![fractal_output (12)](https://github.com/yojablao/my_fractol/assets/111790283/2fed17ac-88d0-4060-a7b9-3704598a9412)
-![fractal_output (13)](https://github.com/yojablao/my_fractol/assets/111790283/ce111901-9335-42be-808d-4de0f8d71f7b)
+
 Example:
 ```bash
 ./fractol "Burning ship"
 ```
+![fractal_output (10)](https://github.com/yojablao/my_fractol/assets/111790283/621bc8e0-f312-4f32-a133-629a0209fcc0)
+![fractal_output (11)](https://github.com/yojablao/my_fractol/assets/111790283/988a83b0-a0d2-4b3c-86da-d7e16baf02c9)
+![fractal_output (12)](https://github.com/yojablao/my_fractol/assets/111790283/2fed17ac-88d0-4060-a7b9-3704598a9412)
+![fractal_output (13)](https://github.com/yojablao/my_fractol/assets/111790283/ce111901-9335-42be-808d-4de0f8d71f7b)
 ## Controls
 
 ### General Controls
