@@ -6,7 +6,7 @@
 #    By: yojablao <yojablao@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/20 16:46:43 by yojablao          #+#    #+#              #
-#    Updated: 2024/05/23 06:01:51 by yojablao         ###   ########.fr        #
+#    Updated: 2024/05/23 09:48:39 by yojablao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Werror -Wextra
 LIBFT_PATH = include/libft
 MLX_PATH = include/minilibx
 
-SRC_DIR = src
+SRC_DIR = project
 OBJ_DIR = obj
 INCLUDE_DIR = include
 HEAD = src/fractol.h
