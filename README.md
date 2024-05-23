@@ -1,11 +1,4 @@
 this is introduction my project
-cd path/to/your/project
-
-# Initialize git repository if not already initialized
-git init
-
-# Create and add README.md
-echo "# Fractol
 
 ![fractal_output (7)](https://github.com/yojablao/my_fractol/assets/111790283/bb8b3068-d8c7-4c3d-b588-10607821fd57)
 
