@@ -68,6 +68,7 @@
     "ctype.h": "c",
     "libft.h": "c",
     "stdio.h": "c",
-    "ios": "c"
+    "ios": "c",
+    "complex": "c"
   }
 }

@@ -6,7 +6,7 @@
 /*   By: yojablao <yojablao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 23:19:27 by yojablao          #+#    #+#             */
-/*   Updated: 2024/05/18 21:35:13 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/05/23 02:19:34 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,9 @@ typedef struct hook_s
 }hook_t;
 typedef struct color_s
 {
-		int	color;
 		int red;
 		int green;
 		int blue;
-		int color_shift;
 		
 }t_color;
 
@@ -79,6 +77,7 @@ typedef struct variables
 	void	*mlx;
 	void	*win;
 	t_imag	img;
+	t_color colors;
 	int		color;
 	int		MAX_iter;
 	hook_t	cor;
@@ -90,7 +89,7 @@ typedef struct variables
 	int 	sin;
 	
 }	var_t ;
-void julia(var_t *fractol, double Cr, double Ci);
+void julia(var_t *fractol);
 double ft_atoi_double(const char *str);
 void fractol_conection(var_t *fractol);
 void    evant_init(var_t    *fractol);
@@ -102,6 +101,10 @@ void    evant_init(var_t    *fractol);
 void	my_mlx_pixel_put( t_imag img,int x, int y, int color);
 void draw_burning_ship(var_t *fractol);
 void handle_save_bmp(var_t *fractol) ;
+int key_hook(int keysym, void *param);
+int mouse_hook(int button, int x, int y, var_t *fractol);
+void    close_handler(var_t *fractol);
+int color_handler(var_t fractol,int iter);
 
 
 #endif
