@@ -118,14 +118,3 @@ Example:
 ### Reset Controls
 
 - **Spacebar**: Reset the view to the default position and zoom level.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Acknowledgements
-
-- [MiniLibX](https://github.com/qst0/ft_libgfx) - The lightweight graphics library used in this project.
-- Inspiration from the 42 School curriculum.
-```
-
