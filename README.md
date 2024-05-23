@@ -1,6 +1,10 @@
-this is introduction my project
+
+Fractol
+
+Fractol is a graphical application that renders various types of fractals such as the Mandelbrot set, Julia set, and the Burning Ship fractal. This project uses the MiniLibX library for graphical rendering.
 
 ![fractal_output (7)](https://github.com/yojablao/my_fractol/assets/111790283/bb8b3068-d8c7-4c3d-b588-10607821fd57)
+
 
 Fractol is a graphical application that renders various types of fractals such as the Mandelbrot set, Julia set, and the Burning Ship fractal. This project uses the MiniLibX library for graphical rendering.
 
