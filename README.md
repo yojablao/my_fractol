@@ -57,8 +57,11 @@ Run the application with one of the supported fractal types as an argument:
 ### Supported Fractal Types
 
 - `mandelbrot`
+
 Example:
+```bash
 ./fractol Mandelbrot
+```
 ![fractal_output (6)](https://github.com/yojablao/my_fractol/assets/111790283/2a988a1d-a095-4d36-a86e-634d0ac249c9)
 ![fractal_output (7)](https://github.com/yojablao/my_fractol/assets/111790283/bb8b3068-d8c7-4c3d-b588-10607821fd57)
 ![fractal_output (8)](https://github.com/yojablao/my_fractol/assets/111790283/b966c90e-06e1-42cd-9047-1cd83a828f80)
