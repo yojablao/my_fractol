@@ -6,7 +6,7 @@
 /*   By: yojablao <yojablao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:45:46 by yojablao          #+#    #+#             */
-/*   Updated: 2024/05/23 05:59:20 by yojablao         ###   ########.fr       */
+/*   Updated: 2024/05/23 10:50:00 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int burning_ship(double real, double imag, var_t fractol)
         i++;
     }
     if (i == fractol.MAX_iter)
-        return COLOR_DARK_PURPLE ;
+        return COLOR_GOLD ;
     return(color_handler(fractol,i));
     
 }
