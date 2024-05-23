@@ -6,7 +6,7 @@
 #    By: yojablao <yojablao@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/20 16:46:43 by yojablao          #+#    #+#              #
-#    Updated: 2024/05/23 09:48:39 by yojablao         ###   ########.fr        #
+#    Updated: 2024/05/23 10:16:02 by yojablao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MLX_PATH = include/minilibx
 SRC_DIR = project
 OBJ_DIR = obj
 INCLUDE_DIR = include
-HEAD = src/fractol.h
+HEAD = project/fractol.h
 
 SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
